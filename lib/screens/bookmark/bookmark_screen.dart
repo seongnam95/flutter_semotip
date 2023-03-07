@@ -9,7 +9,7 @@ class BookmarkScreen extends StatefulWidget {
 
 class _BookmarkScreen extends State<BookmarkScreen> {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Container(
       child: const Text('Bookmark'),
     );

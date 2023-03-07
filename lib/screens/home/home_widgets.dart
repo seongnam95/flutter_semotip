@@ -1,25 +1,50 @@
 import 'package:flutter/material.dart';
 
-class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const HomeAppBar({Key? key}) : super(key: key);
+class TabBarDelegate extends SliverPersistentHeaderDelegate {
+  const TabBarDelegate();
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      elevation: 0.0,
-      backgroundColor: Colors.white,
-      title: Image.asset('assets/images/logo.png', width: 110),
-      actions: const [
-        IconButton(
-          tooltip: 'Notification',
-          icon: Icon(Icons.notifications_outlined),
-          iconSize: 26,
-          onPressed: null,
-        ),
-      ],
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      color: Colors.white,
+      child: TabBar(
+        tabs: [
+          Tab(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              color: Colors.white,
+              child: const Text("전체", style: TextStyle(fontSize: 18)),
+            ),
+          ),
+          Tab(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              color: Colors.white,
+              child: const Text("팔로우", style: TextStyle(fontSize: 18)),
+            ),
+          ),
+        ],
+        isScrollable: true,
+        indicatorWeight: 2,
+        labelPadding: const EdgeInsets.only(right: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        unselectedLabelColor: Colors.grey,
+        labelColor: Colors.black,
+        indicatorColor: Colors.black,
+        indicatorSize: TabBarIndicatorSize.label,
+      ),
     );
+  }
+
+  @override
+  double get maxExtent => 48;
+
+  @override
+  double get minExtent => 48;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
   }
 }
